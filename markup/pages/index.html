@@ -1,32 +1,33 @@
 <!doctype html>
-<html class="no-js" lang="ru">
+<html lang="ru">
 
     <head>
         {{> head/head head.defaults}}
     </head>
 
-    <body class="page">
-        %=symbols=%
+    <body>
 
-        <section class="page__wrapper">
+        {{> svg-sprite/svg-sprite}}
 
-            <!-- Include your modules here -->
+        {{> banner/banner}}
 
-            {{> example/example}}
+        <div class="main">
+            <div class="container cf">
+                {{> product/product_1}}
+                {{> product/product_2}}
+                {{> product/product_3}}
+                {{> product/product_4}}
+                {{> product/product_5}}
+                {{> product/product_6}}
+            </div>
+        </div>
 
-            <div class="page__buffer"></div>
+        {{> popup/popup}}
 
-        </section>
+        <script src="static/js/separate-js/jquery-2.2.4.min.js"></script>
+        <script src="static/js/main%=hash=%%=min=%.js"></script>
+        <script src="static/js/separate-js/common.js"></script>
 
-        <footer class="page__footer">
-            {{> footer/footer}}
-        </footer>
-
-        <script src="%=static=%js/separate-js/svg4everybody.min.js"></script>
-        <script>svg4everybody();</script>
-
-        <!-- Main scripts. You can replace it, but I recommend you to leave it here     -->
-        <script src="%=static=%js/main%=hash=%%=min=%.js"></script>
     </body>
 
 </html>

@@ -4,19 +4,49 @@ html, body {
     height: 100%;
 }
 
-.page {
-    
+.cf {
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+    }
+    &:after {
+        clear: both;
+    }
 }
 
-.page__wrapper {
-    min-height: 100%;
-    margin-bottom: -50px;
+.container {
+    margin: 0 auto;
+    @include respond-to(tablet) {
+        width: 640px;
+    }
+    @include respond-to(desktop) {
+        width: 835px;
+    }
 }
 
-* html .page__wrapper {
-    height: 100%;
-}
-
-.page__buffer {
-    height: 50px;
+.main {
+    padding-top: 30px;
+    @include respond-to(tablet-and-desktop) {
+        padding-top: 20px;
+    }
+    .product {
+        @include respond-to(mobile) {
+            margin: 0 auto;
+        }
+        @include respond-to(tablet) {
+            float: left;
+            margin-right: 40px;
+            &:nth-child(2n) {
+                margin-right: 0;
+            }
+        }
+        @include respond-to(desktop) {
+            float: left;
+            margin-right: 20px;
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+        }
+    }
 }

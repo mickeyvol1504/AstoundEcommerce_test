@@ -1,0 +1,117 @@
+.product {
+    width: 285px;
+    @include respond-to(tablet) {
+        width: 300px;
+    }
+    @include respond-to(desktop) {
+        width: 265px;
+    }
+    &__img {
+        height: 265px;
+        @include respond-to(tablet) {
+            height: 284px;
+        }
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        cursor: pointer;
+
+    }
+    &__more {
+        display: inline-block;
+        width: 100%;
+        padding: 15px 0;
+        font-family: $OpenSans;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: rgba(0,0,0,0.5);
+        color: $green;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        @include respond-to(desktop) {
+            width: 144px;
+            height: 30px;
+            padding: 0;
+            visibility: hidden;
+            opacity: 0;
+            background-color: $green;
+            color: $black;
+            top: 50%;
+            left: 50%;
+            margin: -15px 0 0 -72px;
+            transform: translateY(10px);
+            transition: 0.4s;
+        }
+        &-before {
+            @include respond-to(desktop) {
+                display: none;
+            }
+        }
+    }
+    &__price {
+        display: block;
+        font-family: $OpenSans;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 22px;
+        text-align: center;
+        margin-bottom: 30px;
+        @include respond-to(desktop) {
+            display: none;
+        }
+        &_inside {
+            display: none;
+            font-size: 16px;
+            margin-bottom: 0;
+            background-color: $green;
+            position: absolute;
+            bottom: 22px;
+            right: 0;
+            @include respond-to(desktop) {
+                display: inline-block;
+            }
+        }
+        &-old {
+            padding: 0 10px;
+            color: $black;
+            @include respond-to(desktop) {
+                text-decoration: line-through;
+            }
+        }
+        &-new {
+            padding: 0 10px;
+            color: $red;
+        }
+    }
+    &__desc {
+        padding: 10px;
+        font-family: $Oswald;
+        font-weight: 700;
+        font-size: 20px;
+        color: $black;
+        text-align: center;
+        text-transform: uppercase;
+        @include respond-to(desktop) {
+            font-size: 12px;
+            line-height: 18px;
+            padding: 15px 10px;
+        }
+    }
+}
+.no-touchevents {
+    @include respond-to(desktop) {
+        .product {
+            &__img:hover {
+                .product__more {
+                    visibility: visible;
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+}
