@@ -1,0 +1,438 @@
+.popup-wrapper {
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+.popup-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.popup {
+    width: 100%;
+    background-color: $white;
+    position: absolute;
+    top: 0;
+    padding: 55px 35px 45px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+    @include respond-to(tablet-and-desktop) {
+        display: flex;
+        flex-direction: column;
+    }
+    @include respond-to(tablet) {
+        width: 640px;
+        padding: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @include respond-to(desktop) {
+        width: 835px;
+        min-height: 460px;
+        padding: 20px 65px 20px 460px;
+        left: 50%;
+        margin-left: -417.5px;
+    }
+    &_open {
+        visibility: visible;
+        opacity: 1;
+    }
+    &__close {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        top: 5px;
+        right: 35px;
+        cursor: pointer;
+        @include respond-to(tablet-and-desktop) {
+            width: 40px;
+            height: 40px;
+            border: 2px solid $blue;
+            border-radius: 50%;
+            top: 15px;
+            right: 15px;
+        }
+        &:before, &:after {
+            display: inline-block;
+            content: '';
+            height: 0;
+            width: 35px;
+            border-bottom: 5px solid $blue;
+            position: absolute;
+            top: 20px;
+            right: 5px;
+            transform-origin: center;
+            transition: transform 0.3s;
+            @include respond-to(tablet-and-desktop) {
+                width: 24px;
+                border-bottom: 2px solid $blue;
+                top: 17px;
+                right: 6px;
+            }
+        }
+        &:before {
+            transform: rotate(45deg);
+        }
+        &:after {
+            transform: rotate(-45deg);
+        }
+    }
+    &__title {
+        font-family: $Oswald;
+        font-weight: 700;
+        font-size: 20px;
+        color: $black;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        @include respond-to(tablet) {
+            padding-right: 35px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    &__number {
+        font-family: $OpenSans;
+        font-size: 12px;
+        line-height: 20px;
+        color: $light-grey;
+        margin-bottom: 15px;
+        @include respond-to(tablet) {
+            padding-left: 420px;
+            margin-bottom: 35px;
+        }
+        span {
+            display: inline-block;
+            @include respond-to(tablet) {
+                margin-bottom: 5px;
+            }
+        }
+        .rate {
+            float: right;
+            @include respond-to(desktop) {
+                display: none;
+            }
+            @include respond-to(tablet) {
+                float: none;
+            }
+        }
+    }
+    &__img {
+        width: calc(100% + 70px);
+        height: 420px;
+        transform: translateX(-35px);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        margin-bottom: 20px;
+        @include respond-to(tablet-and-desktop) {
+            width: 400px;
+            transform: translateX(0px);
+            position: absolute;
+        }
+        @include respond-to(desktop) {
+            top: 20px;
+            left: 25px;
+        }
+        @include respond-to(tablet) {
+            top: 80px;
+            left: 30px;
+        }
+    }
+    &__desc {
+        font-family: $OpenSans;
+        font-size: 12px;
+        color: $black;
+        margin-bottom: 40px;
+        @include respond-to(desktop) {
+            order: 1;
+        }
+        @include respond-to(tablet) {
+            order: 1;
+            margin-bottom: 0;
+        }
+    }
+    &__social {
+        width: 260px;
+        margin: 0 auto 30px;
+        @include respond-to(tablet-and-desktop) {
+            position: absolute;
+        }
+        @include respond-to(desktop) {
+            width: 40px;
+            top: 35px;
+            left: 40px;
+        }
+        @include respond-to(tablet) {
+            width: 40px;
+            top: 95px;
+            left: 45px;
+        }
+        &-hint {
+            display: none;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            cursor: pointer;
+            &:before, &:after {
+                display: inline-block;
+                content: '';
+                height: 0;
+                transform-origin: center;
+                transition: transform 0.3s;
+                width: 24px;
+                border-bottom: 2px solid $blue;
+                position: absolute;
+                top: 18px;
+                right: 7px;
+            }
+            &:before {
+                transform: rotate(0deg);
+            }
+            &:after {
+                transform: rotate(90deg);
+            }
+            &_open {
+                &:before {
+                    transform: rotate(45deg);
+                }
+                &:after {
+                    transform: rotate(-45deg);
+                }
+            }
+            @include respond-to(desktop) {
+                display: inline-block;
+            }
+        }
+        &-tooltip {
+            @include respond-to(desktop) {
+                display: none;
+            }
+        }
+        &-item {
+            width: 40px;
+            height: 40px;
+            border: 2px solid $blue;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            @include respond-to(tablet-and-desktop) {
+                margin-bottom: 15px;
+            }
+            @include respond-to(mobile) {
+                float: left;
+                margin-right: 15px;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+            a {
+                display: block;
+                height: 100%;
+                text-align: center;
+            }
+            svg {
+                width: 14px;
+                height: 14px;
+                fill: $blue;
+                margin-top: 12px;
+                transition: fill 0.3s;
+            }
+        }
+    }
+    &__price {
+        font-family: $OpenSans;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 22px;
+        text-align: center;
+        margin-bottom: 40px;
+        @include respond-to(tablet-and-desktop) {
+            text-align: left;
+        }
+        @include respond-to(desktop) {
+            margin-bottom: 25px;
+        }
+        @include respond-to(tablet) {
+            font-size: 26px;
+            padding-left: 420px;
+        }
+        &-old {
+            color: $black;
+            margin-right: 20px;
+            @include respond-to(tablet) {
+                display: block;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            &_sale {
+                text-decoration: line-through;
+            }
+        }
+        &-new {
+            color: $red;
+            @include respond-to(tablet) {
+                display: block;
+            }
+        }
+    }
+    &__size {
+        &-title {
+            font-family: $OpenSans;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 15px;
+            @include respond-to(desktop) {
+                display: inline-block;
+                margin-bottom: 30px;
+                margin-right: 15px;
+                line-height: 40px;
+                vertical-align: top;
+                span {
+                    &:first-child {
+                        display: none;
+                    }
+                }
+            }
+        }
+        &-choose {
+            @include respond-to(desktop) {
+                display: inline-block;
+            }
+            @include respond-to(tablet) {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            @include respond-to(mobile) {
+                width: 250px;
+                margin: 0 auto 30px;
+            }
+        }
+        &-item {
+            float: left;
+            @include respond-to(desktop) {
+                margin-right: 15px;
+            }
+            @include respond-to(tablet) {
+                margin-right: 15px;
+                margin-bottom: 15px;
+                &:nth-child(3) {
+                    margin-right: 0;
+                }
+            }
+            @include respond-to(mobile) {
+                margin-right: 30px;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+            input {
+                display: none;
+            }
+            label {
+                display: block;
+                width: 40px;
+                height: 40px;
+                background-color: $white;
+                border: 1px solid $black;
+                border-radius: 50%;
+                font-family: $Oswald;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 40px;
+                color: $black;
+                text-transform: uppercase;
+                text-align: center;
+                cursor: pointer;
+                transition: color 0.3s, background-color 0.3s;
+            }
+            input:checked + label {
+                background-color: $black;
+                color: $white;
+            }
+        }
+    }
+    &__form {
+        @include respond-to(desktop) {
+            order: 2;
+        }
+        @include respond-to(tablet) {
+            padding-left: 420px;
+            margin-bottom: 65px;
+        }
+    }
+    &__submit {
+        text-align: center;
+        input {
+            display: inline-block;
+            padding: 0 40px;
+            height: 40px;
+            line-height: 40px;
+            border: 2px solid $green;
+            background-color: $green;
+            border-radius: 20px;
+            font-family: $Oswald;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 1.5px;
+            color: $black;
+            text-align: center;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            @include respond-to(desktop) {
+                font-size: 14px;
+                letter-spacing: 2px;
+                padding: 0 50px;
+            }
+            @include respond-to(tablet) {
+                padding: 0 10px;
+            }
+        }
+    }
+    &__rate {
+        .rate {
+            display: none;
+            @include respond-to(desktop) {
+                display: block;
+                margin-bottom: 25px;
+            }
+        }
+    }
+}
+.no-touchevents {
+    .popup {
+        &__social-item:hover {
+            background-color: $blue;
+            svg {
+                fill: $white;
+            }
+        }
+        &__size-item:hover {
+            label {
+                color: $white;
+                background-color: $black;
+            }
+        }
+        &__submit {
+            input:hover {
+                background-color: $white;
+            }
+        }
+        &__close {
+            &:hover:before,
+            &:hover:after {
+                transform: rotate(0deg);
+            }
+        }
+    }
+}

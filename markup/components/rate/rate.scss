@@ -1,0 +1,13 @@
+.rate {
+    &__item {
+        display: inline-block;
+        fill: $light-grey;
+    }
+    .active {
+        fill: $red;
+    }
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
