@@ -1,5 +1,6 @@
 .product {
     width: 285px;
+    position: relative;
     @include respond-to(tablet) {
         width: 300px;
     }
@@ -61,25 +62,24 @@
         text-align: center;
         margin-bottom: 30px;
         @include respond-to(desktop) {
-            display: none;
-        }
-        &_inside {
-            display: none;
+            display: inline-block;
             font-size: 16px;
             margin-bottom: 0;
             background-color: $green;
             position: absolute;
-            bottom: 22px;
+            top: 225px;
             right: 0;
-            @include respond-to(desktop) {
-                display: inline-block;
-            }
         }
         &-old {
             padding: 0 10px;
             color: $black;
-            @include respond-to(desktop) {
-                text-decoration: line-through;
+            &_sale {
+                @include respond-to(desktop) {
+                    text-decoration: line-through;
+                }
+                @include respond-to(mobile-and-tablet) {
+                    display: none;
+                }
             }
         }
         &-new {
